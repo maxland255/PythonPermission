@@ -10,4 +10,4 @@ from .Attribute import private, fileprivate, protected
 
 __all__ = ["private", "fileprivate", "protected", "PrivateFunctionError"]
 __author__ = "Maxland255"
-__version__ = "0.0.1"
+__version__ = "0.0.2"

@@ -7,7 +7,7 @@ packages = ["src/PythonPermission"]
 
 [project]
 name = "PythonPermission"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Maxland255", email="developer@pieteraerens.eu" },
 ]

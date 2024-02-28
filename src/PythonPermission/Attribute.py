@@ -8,7 +8,7 @@ import inspect
 from functools import wraps
 from typing import Any, Callable
 
-from Error import PrivateFunctionError
+from .Error import PrivateFunctionError
 
 
 class private(object):
