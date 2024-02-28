@@ -13,31 +13,37 @@ pip install PythonPermission
 ## Usage
 
 ```python
-from PythonPermission import private, fileprivate, protected
+from PythonPermission import private, fileprivate, protected, internal
 
 class MyClass:
     def __init__(self):
         self.private_method()
         self.protected_method()
         self.fileprivate_method()
+        self.internal_method()
         self.public_method()
 
     @private()
     def private_method(self):
-        print(self.__private)
+        print("Private method")
 
     @protected()
     def protected_method(self):
-        print(self._protected)
+        print("Protected method")
 
     @fileprivate()
     def fileprivate_method(self):
-        print(self.__fileprivate)
+        print("Fileprivate method")
+    
+    @internal()
+    def internal_method(self):
+        print("Internal method")
 
     def public_method(self):
-        self.__private_method()
-        self._protected_method()
-        self.__fileprivate_method()
+        self.private_method()
+        self.protected_method()
+        self.fileprivate_method()
+        self.internal_method()
 ```
 
 ## License

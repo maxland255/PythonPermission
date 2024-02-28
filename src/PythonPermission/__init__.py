@@ -5,9 +5,10 @@ LICENSE: All rights reserved
 """
 
 from .Error import PrivateFunctionError
-from .Attribute import private, fileprivate, protected
+from .Attribute import private, fileprivate, protected, internal
 
 
-__all__ = ["private", "fileprivate", "protected", "PrivateFunctionError"]
+__all__ = ["private", "fileprivate", "protected", "internal", "PrivateFunctionError"]
 __author__ = "Maxland255"
-__version__ = "0.0.2"
+__version__ = "0.0.3"
+__license__ = "GNU GPLv3"

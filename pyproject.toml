@@ -7,21 +7,24 @@ packages = ["src/PythonPermission"]
 
 [project]
 name = "PythonPermission"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
   { name="Maxland255", email="developer@pieteraerens.eu" },
 ]
 description = ""
 readme = "README.md"
+license = {file = "LICENSE"}
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.8",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
-    "Topic :: Software Development :: Localization",
+    "Topic :: Security",
     "Development Status :: 3 - Alpha",
+    "Natural Language :: English",
 ]
 
 [project.urls]
 "Homepage" = "https://github.com/maxland255/PythonPermission"
-"Bug Tracker" = "https://github.com/maxland255/PythonPermission/issues"
+"Issues" = "https://github.com/maxland255/PythonPermission/issues"

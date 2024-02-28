@@ -6,4 +6,5 @@ LICENSE: All rights reserved
 
 
 class PrivateFunctionError(Exception):
-    pass
+    def __init__(self, message: str):
+        super().__init__(message)
