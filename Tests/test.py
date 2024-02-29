@@ -3,57 +3,98 @@ This file contains the tests for the PythonPermission module
 
 LICENSE: All rights reserved
 """
-from src.PythonPermission import *
-# from tests.Test2 import test2
+import sys
+sys.path.append("./src")
+
+from unittest import TestCase, main
+from PythonPermission import PrivateFunctionError
+
+from tests.ClassTest import PrivateClass, FilePrivateClass, ProtectedClass, \
+    PrivateInit, FilePrivateInit, ProtectedInit, Protected2, MethodeTest
+from FunctionTest import test_private, test_fileprivate, test_protected
 
 
-# class Test:
-#     @private()
-#     def __init__(self, value: int, message: str):
-#         self.__value = value
-#         self.__message = message
-#
-#     @classmethod
-#     @fileprivate()
-#     def from_file(cls, value: int) -> "Test":
-#         return cls(value, "This an error message")
-#
-#
-# @internal()
-# def test() -> None:
-#     pass
+class Test(TestCase):
+    def test_class_private_init(self):
+        with self.assertRaises(PrivateFunctionError):
+            PrivateInit()
 
+        assert isinstance(PrivateInit.test(), PrivateInit)
 
-class Test:
-    @private()
-    def private_test(self):
-        pass
+    def test_class_file_private_init(self):
+        with self.assertRaises(PrivateFunctionError):
+            FilePrivateInit()
 
-    @fileprivate()
-    def fileprivate_test(self):
-        pass
+        assert isinstance(FilePrivateInit.test(), FilePrivateInit)
 
-    @internal()
-    def internal_test(self):
-        pass
+    def test_class_protected_init(self):
+        with self.assertRaises(PrivateFunctionError):
+            ProtectedInit()
 
-    @protected()
-    def protected_test(self):
-        pass
+        assert isinstance(ProtectedInit.test(), ProtectedInit)
+        assert isinstance(Protected2(), Protected2)
+
+    # @skip("Internal function does not support test")
+    # def test_class_internal_init(self):
+    #     try:
+    #         assert isinstance(InternalInit(), InternalInit)
+    #         assert isinstance(InternalInit.test(), InternalInit)
+    #     except AttributeError:
+    #         self.skipTest("InternalInit has an exception")
+
+    def test_class_methode(self):
+        with self.assertRaises(PrivateFunctionError):
+            MethodeTest().private_methode()
+
+        with self.assertRaises(PrivateFunctionError):
+            MethodeTest().fileprivate_methode()
+
+        with self.assertRaises(PrivateFunctionError):
+            MethodeTest().protected_methode()
+
+        # try:
+        #     assert MethodeTest().internal_methode() == "internal"
+        # except AttributeError:
+        #     self.skipTest("MethodeTest internal methode has an exception")
+
+    def test_class_private(self):
+        with self.assertRaises(PrivateFunctionError):
+            PrivateClass()
+
+    def test_class_file_private(self):
+        with self.assertRaises(PrivateFunctionError):
+            FilePrivateClass()
+
+    def test_class_protected(self):
+        with self.assertRaises(PrivateFunctionError):
+            ProtectedClass()
+
+    # @skip("Internal function does not support test")
+    # def test_class_internal(self):
+    #     try:
+    #         assert isinstance(InternalClass(), type(InternalClass))
+    #     except AttributeError:
+    #         self.skipTest("InternalClass has an exception")
+
+    def test_function_private(self):
+        with self.assertRaises(PrivateFunctionError):
+            test_private()
+
+    def test_function_file_private(self):
+        with self.assertRaises(PrivateFunctionError):
+            test_fileprivate()
+
+    def test_function_protected(self):
+        with self.assertRaises(PrivateFunctionError):
+            test_protected()
+
+    # @skip("Internal function does not support test")
+    # def test_function_internal(self):
+    #     try:
+    #         assert test_internal() == "internal"
+    #     except AttributeError:
+    #         self.skipTest("test_internal has an exception")
 
 
 if __name__ == "__main__":
-    # t1 = Test(5, "This is a tests")
-    # t2 = Test.from_file(5)
-
-    # test()
-    # test2()
-
-    # src.PythonPermission.test()
-
-    t = Test()
-
-    t.private_test()
-    t.fileprivate_test()
-    t.internal_test()
-    t.protected_test()
+    main()
