@@ -7,14 +7,14 @@ packages = ["src/PythonPermission"]
 
 [project]
 name = "PythonPermission"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
   { name="Maxland255", email="developer@pieteraerens.eu" },
 ]
 description = ""
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.8"
+requires-python = ">=3.7"
 classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.8",

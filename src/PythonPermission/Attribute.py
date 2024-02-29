@@ -22,14 +22,14 @@ class private(object):
             if isinstance(func, type):
                 # Classes
                 if len(args) == 0:
-                    raise PrivateFunctionError(f"You can not set a class as private if this class is not in another class")
+                    raise PrivateFunctionError("You can not set a class as private if this class is not in another class")
 
                 if args[0] is None or args[0].__class__.__name__ not in func.__qualname__.split("."):
                     raise PrivateFunctionError(f"Cannot call private class **{func.__name__}** directly from outside the class")
             else:
                 # Functions
                 if len(args) == 0:
-                    raise PrivateFunctionError(f"You can not set a function as private if this function is not in a class")
+                    raise PrivateFunctionError("You can not set a function as private if this function is not in a class")
 
                 caller_frame = inspect.currentframe().f_back
                 caller_locals = caller_frame.f_locals
@@ -43,8 +43,7 @@ class private(object):
                         or
                         (not func.__globals__.get(func.__qualname__.split('.')[0]) is args[0].__class__
                          and
-                         not class_or_function_found.__name__ == caller_locals.get("self").__class__.__name__)
-                ):
+                         not class_or_function_found.__name__ == caller_locals.get("self").__class__.__name__)):
                     raise PrivateFunctionError(f"Cannot call private function **{func.__name__}** directly from outside the class")
 
             try:
@@ -90,7 +89,7 @@ class protected(object):
         @wraps(func)
         def wrapper(*args, **kwargs) -> Any:
             if len(args) == 0:
-                raise PrivateFunctionError(f"You can not set a function as protected if this function is not in a class")
+                raise PrivateFunctionError("You can not set a function as protected if this function is not in a class")
 
             caller_frame = inspect.currentframe().f_back
             caller_locals = caller_frame.f_locals
@@ -115,7 +114,7 @@ class internal(object):
             caller_frame = inspect.currentframe().f_back
             caller_locals = caller_frame.f_locals
 
-            __path__ = caller_locals.get("__file__").split("/")[:-1]
+            __path__ = caller_locals.get("__file__", "").split("/")[:-1]
             __path__.extend(func.__module__.split("."))
             __path__ = "/".join(__path__) + ".py"
 
@@ -126,8 +125,7 @@ class internal(object):
                     or
                     __package__ is None and func.__module__ == "__main__"
                     or
-                    __path__ == inspect.getfile(func)
-            ):
+                    __path__ == inspect.getfile(func)):
                 raise PrivateFunctionError(f"Cannot call internal function **{func.__name__}** directly from outside the package")
             return func(*args, **kwargs)
 

@@ -2,7 +2,7 @@
 
 ## Description
 
-This package provide a simple way to manage element permissions in python. That is equivalent of the private, protected and protected access modifiers in other languages.
+This package provide a simple way to manage element permissions in python. That is equivalent of the private, fileprivate, protected and internal access modifiers in other languages.
 
 ## Installation
 
