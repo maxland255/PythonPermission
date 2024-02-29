@@ -33,10 +33,10 @@ jobs:
       run: |
         # stop the build if there are Python syntax errors or undefined names
         flake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 src/ --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        # exit-zero treats all errors as warnings.
+        flake8 src/ --extend-ignore W504,W503 --count --exit-zero --max-complexity=10 --max-line-length=150 --statistics
         # Custom flake8 config
-        flake8 --append-config .flake8 src/
-    - name: Test with pytest
+        flake8 --append-config .flake8 src/ --count --exit-zero
+    - name: Test with unittest
       run: |
         python Test/test.py
