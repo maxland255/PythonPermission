@@ -39,4 +39,5 @@ jobs:
         flake8 --append-config .flake8 src/ --count --exit-zero
     - name: Test with unittest
       run: |
+        ls -lna
         python Test/test.py

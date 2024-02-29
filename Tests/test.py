@@ -6,11 +6,11 @@ LICENSE: All rights reserved
 import sys
 sys.path.append("./src")
 
-from unittest import TestCase, main
+from unittest import TestCase, main, skip
 from PythonPermission import PrivateFunctionError
 
 from tests.ClassTest import PrivateClass, FilePrivateClass, ProtectedClass, \
-    PrivateInit, FilePrivateInit, ProtectedInit, Protected2, MethodeTest
+    PrivateInit, FilePrivateInit, ProtectedInit, Protected2, MethodeTest, InternalInit, InternalClass
 from FunctionTest import test_private, test_fileprivate, test_protected
 
 
@@ -34,13 +34,13 @@ class Test(TestCase):
         assert isinstance(ProtectedInit.test(), ProtectedInit)
         assert isinstance(Protected2(), Protected2)
 
-    # @skip("Internal function does not support test")
-    # def test_class_internal_init(self):
-    #     try:
-    #         assert isinstance(InternalInit(), InternalInit)
-    #         assert isinstance(InternalInit.test(), InternalInit)
-    #     except AttributeError:
-    #         self.skipTest("InternalInit has an exception")
+    @skip("Internal function does not support test")
+    def test_class_internal_init(self):
+        try:
+            assert isinstance(InternalInit(), InternalInit)
+            assert isinstance(InternalInit.test(), InternalInit)
+        except AttributeError:
+            self.skipTest("InternalInit has an exception")
 
     def test_class_methode(self):
         with self.assertRaises(PrivateFunctionError):
